@@ -2,7 +2,7 @@ require "test_helper"
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
 
-  test "invalid signup information" do  # тест для провальной регистрации 
+  test "invalid signup information" do  # тест для провальной регистрации пользователя
     get signup_path
     assert_no_difference 'User.count' do
       post users_path, params: { user: { name:  "",
@@ -14,7 +14,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_template 'users/new'
   end
 
-  test "valid signup information" do  # тест для успешной регистрации 
+  test "valid signup information" do  # тест для успешной регистрации пользователя
     assert_difference 'User.count', 1 do
       post users_path, params: { user: { name:  "Example User",
                                          email: "user@example.com",

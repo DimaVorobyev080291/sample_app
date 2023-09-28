@@ -1,0 +1,22 @@
+<% provide(:title, 'All users') %>
+<table border="2"  cellspacing="0" cellpadding="0" align="center"><!--две картинки-->
+  <tr>
+    <td>
+      <%= image_tag("крастные8.jpg", alt: "Rails logo", width: "400",height: "300")%>
+    </td>
+    <td>
+      <h1>Все пользователи</h1>
+    </td>
+    <td>
+      <%= image_tag("синие21.jpg", alt: "Rails logo", width: "400",height: "300",)%>
+    </td>
+  </tr>
+</table>
+
+<%= will_paginate %>
+
+<ul class="users">
+    <%= render @users %>
+</ul>
+
+<%= will_paginate %>

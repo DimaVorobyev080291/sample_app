@@ -1,18 +1,19 @@
 <div class="center jumbotron">
-  <h1>Welcome to the Sample App</h1>
+  <h1>Добро пожаловать "the Sample App"</h1>
 
   <h2>
-    This is the home page for the
+    Это домашняя страница для 
     <a href="https://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
+    "sample application".
   </h2>
 
-   <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+   <%= link_to "Зарегистрируйтесь прямо сейчас!", signup_path, class: "btn btn-lg btn-primary" %>
 </div>
-
-<%= link_to image_tag("серые22.jpg", alt: "Rails logo", width: "205"),
-                      "https://rubyonrails.org/" %>
-<%= link_to image_tag("синие19.jpg", alt: "Rails logo", width: "180"),
-                      "#" %>
-<%= link_to image_tag("крастные8.jpg", alt: "Rails logo", width: "272"),
-                      "#" %>
+<table cellspacing="0" cellpadding="0" align="center"><!--две картинки-->
+  <tr>
+    <td>
+      <%= image_tag("серые22.jpg", alt: "Rails logo", width: "500",height: "600")%>
+      <%= image_tag("синие19.jpg", alt: "Rails logo", width: "500",height: "600")%>
+    </td>
+  </tr>
+</table>

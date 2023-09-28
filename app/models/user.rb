@@ -1,13 +1,13 @@
 class User < ApplicationRecord
    attr_accessor :remember_token
-   before_save { self.email = email.downcase }
-   validates :name, presence: true , length: { maximum: 50 }
-   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-   validates :email, presence: true , length: { maximum: 255 },
+   before_save { self.email = email.downcase } #  переводит адрес электронной почты пользователя в строчную версию 
+   validates :name, presence: true , length: { maximum: 50 } # имя пользователя 
+   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i # регулярное выражение emal
+   validates :email, presence: true , length: { maximum: 255 }, # emal пользователя 
                            format: { with: VALID_EMAIL_REGEX },
                            uniqueness: true
-   has_secure_password
-   validates :password, presence: true, length: { minimum: 6 }
+   has_secure_password  # пароль пользователя 
+   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
    # Возвращает дайджест данной строки
   def User.digest(string)
@@ -25,6 +25,13 @@ class User < ApplicationRecord
   def remember
     self.remember_token = User.new_token
     update_attribute(:remember_digest, User.digest(remember_token))
+    remember_digest
+  end
+
+  # Возвращает токен сеанса, чтобы предотвратить перехват сеанса.
+  # Мы повторно используем дайджест "Запомнить" для удобства.
+  def session_token
+    remember_digest || remember
   end
 
   # Возвращает true, если предоставленный токен совпадает с дайджестом.

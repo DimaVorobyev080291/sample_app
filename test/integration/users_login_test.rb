@@ -9,7 +9,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "login with valid email/invalid password" do # Тест для поимки нежелательной продолжительности флеша 
     get login_path
     assert_template 'sessions/new'
-    post login_path, params: { session: { email:    @user.email, password: "invalid" } }
+    post login_path, params: { session: { email: @user.email, password: "invalid" } }
     assert_not is_logged_in?
     assert_response :unprocessable_entity
     assert_template 'sessions/new'
@@ -40,12 +40,12 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", user_path(@user), count: 0
   end
   
-  test "login with remembering" do
+  test "login with remembering" do # стоит флажок запомнить меня
     log_in_as(@user, remember_me: '1')
     assert_not cookies[:remember_token].blank?
   end
     
-  test "login without remembering" do
+  test "login without remembering" do # не стоит флажок запомнить меня 
   # Log in to set the cookie.
     log_in_as(@user, remember_me: '1')
   # Log in again and verify that the cookie is deleted.

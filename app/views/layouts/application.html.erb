@@ -16,6 +16,7 @@
     <div class="container">
       <% flash.each do |message_type, message| %>
         <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+        <%= image_tag("крастные11.jpg", alt: "Rails logo", width: "300",height: "200")%>
       <% end %>
       <%= yield %>
       <%= render 'layouts/footer' %>
